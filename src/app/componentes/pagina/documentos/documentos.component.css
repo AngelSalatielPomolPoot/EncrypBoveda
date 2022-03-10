@@ -1,0 +1,211 @@
+
+ /*---------------------------------------
+             contenido
+  -----------------------------------------*/
+  #contenido {
+    background: #212529fa;
+    background-size: cover;
+    padding: 60px 0 40px 0;
+    margin: center;
+    margin-top: 56px;
+    min-height: 92.6vh;
+    animation: animacionContrasenia 1s;
+}
+
+.textoTituloContenido{
+    font-weight: 900;
+    text-align: center;
+    line-height: 1.8rem;
+    margin-bottom: 2.2rem;
+    visibility: visible;
+    opacity: 1;
+    transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+    transition: opacity 0.8s cubic-bezier(0.5, 0, 0, 1) 0s, transform 0.8s cubic-bezier(0.5, 0, 0, 1) 0s;
+    font-size: calc(1.9em + 2.8vw);
+    line-height: 3.9rem;
+}
+
+.textoTituloContenido span{
+    color: rgba(255, 255, 255, 0.89);
+    display: inline-block;
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+.texnoNormal{
+    font-size: 1.4rem;
+    line-height: 1.8rem;
+}
+
+.texnoNormal p{
+    color: rgba(44, 44, 44, 0.815);
+    text-align: left;
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+/*---------Modal------------*/
+
+.descipccion{
+    font-weight: 700;
+    animation: animacionModal 1.2s;
+    text-shadow: 0.04em 0.04em 0.04em #333;
+}
+
+.modal-title{
+    font-weight: 700;
+    width: 100%;
+    animation: animacionModal 1.2s;
+    text-shadow: 0.04em 0.04em 0.04em #333;
+}
+
+.modal-title2{
+    width: 100%;
+    font-weight: 700;
+    animation: animacionModal 1.2s;
+    text-shadow: 0.04em 0.04em 0.04em #333;
+}
+
+.textoDescripcion{
+    animation: animacionModal 1.2s;
+}
+
+@keyframes animacionModal{
+ 0%{opacity: 0;filter:blur(14);}   
+ 100%{opacity: 1;filter:blur(0);}
+}
+
+.modal-content{
+    background-color: rgba(33, 37, 41,.95);
+    color: #fff;
+}
+
+.modal-body{
+    text-align: justify;
+}
+
+.close {
+    float: right;
+    line-height: 1;
+    font-size: 2rem;
+    background-color: #f00;
+    color: #fff;
+    text-shadow: 0 1px 0 #f00;
+}
+
+
+@media (min-width: 576px){
+    .modal-dialog {
+        max-width: 550px;
+    }
+}
+/*-------------- modificar list-group ------------------*/
+.list-group-modificar{
+    margin-top: 5px;
+}
+
+/*-----------------------------*/
+ 
+ 
+@keyframes animacionContrasenia{
+    0%{opacity: 0;filter:blur(14)}   
+    100%{opacity: 1;filter:blur(0)}
+}
+
+
+.modal-title{
+    font-weight: 700;
+}
+
+/*modal visualizar estilos*/
+.colorModalP{
+    animation: animacionModal 1.2s;
+    color: rgba(255, 255, 255, 0.85) !important;
+}
+
+.subtituloModal{
+    animation: animacionModal 1.2s;
+    font-weight: 700;
+}
+
+.modal-body{
+    min-height: 358px;
+}
+
+.card-aviso{
+    margin-top: 10px;
+    background-color: rgba(255, 255, 255, 0.85);
+    text-align: center;
+}
+
+.template{
+    margin-top: 30px;
+    text-align: center;   
+    color: #fff;
+}
+
+.linkBoton{
+    width: 100% ;
+    height: 10px;
+}
+
+.contenedorInicial{
+    width: 100%;
+}
+
+.cantidadMostrar{
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.925);
+    width: 100%;
+}
+
+.password-icon {
+    float: right;
+    position: relative;
+    margin: -38px 0px 0 0;
+    cursor: pointer;
+}
+
+.textoAviso{
+    color: #fff !important;
+    font-size: 1rem;
+}
+
+.imagenPDF{
+    width: 35px;
+    height: 45px; 
+    float: left;
+    margin-right: 10px;  
+}
+
+
+.nombreArchivo{
+    float: left;
+}
+
+.pdfPrevisializacion{
+    width: 55px;
+    height: 65px; 
+    float: left;
+    margin-right: 10px;
+}
+
+.contenedorImagen{
+    color:#fff;
+    width: 55px;
+    height: 65px;
+}
+
+.contenedorImagen2{
+    color:#fff;
+    width: 75px;
+    height: 90px;
+}
+
+.pdfPrevisializacion2{
+    float: left;
+    width: 75px;
+    height: 90px; 
+    float: left;
+    margin-right: 10px;
+}

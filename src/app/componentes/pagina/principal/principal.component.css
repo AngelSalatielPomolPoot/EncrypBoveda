@@ -1,0 +1,239 @@
+.rowCustom{
+    margin-left: 0; 
+    margin-right: 0;
+ }
+  
+ 
+ .banner-sec{
+     background:url()  no-repeat left bottom; 
+     background-size:cover; 
+     min-height: auto;  
+     padding:0;
+ }
+  
+ .autentificacionPrincipal{
+     width: 100%;
+     background:rgba(0, 0, 0, 0.75); 
+ }
+  
+ .text-uppercase{
+     color: #fff;
+ }
+  
+  
+ .carousel-caption{
+      text-align:left; 
+      left:5%;
+ }
+  
+ .banner-text{
+     width:70%; 
+     position:absolute; 
+     bottom:200px; 
+     padding-left:20px;
+   
+ }
+  
+ .banner-text h2{
+     color:#fff; 
+     font-weight:600;
+     font-size: calc(2em + 4vw);
+     text-shadow: 0.08em 0.08em 0.08em rgb(41, 40, 40);
+ }
+  
+ .banner-text h2:after{
+     content:" "; 
+     width:100px; 
+     height:5px; 
+     background:#FFF; 
+     display:block; 
+     margin-top:20px; 
+     box-shadow: 0.04em 0.04em 0.04em rgb(41, 40, 40)
+ }
+  
+ .banner-text p{
+     color:#fff;
+     font-size: calc(1.2em + 1.6vw);
+     text-shadow: 0.08em 0.08em 0.08em rgb(41, 40, 40)
+ }
+  
+  
+ .imagenCarrocel{
+     width: 100%;
+     height: 100vh; /*84*/
+     object-fit: cover;
+     object-position: top;
+     opacity: 0.80;
+ }
+  
+ .TituloAnimeCarrosuel{
+     font-weight: 700;
+ }
+ 
+ /*---------------------------------------
+             presentacion
+  -----------------------------------------*/
+ #presentacion {
+     background: #000;
+     margin: center;
+     animation: animacionHome 1s;
+ }
+ 
+ 
+ /*---------------------------------------
+             contenido
+  -----------------------------------------*/
+ #contenido {
+     background: #212529fa;
+     background-size: cover;
+     padding: 60px 0 40px 0;
+     margin: center;
+     animation: animacionHome 1s;
+ }
+ 
+ .textoTituloContenido{
+     font-weight: 900;
+     text-align: center;
+     line-height: 1.8rem;
+     margin-bottom: 2.2rem;
+     visibility: visible;
+     opacity: 1;
+     transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+     transition: opacity 0.8s cubic-bezier(0.5, 0, 0, 1) 0s, transform 0.8s cubic-bezier(0.5, 0, 0, 1) 0s;
+     font-size: calc(1.9em + 2.8vw);
+     line-height: 3.9rem;
+ }
+ 
+ .textoTituloContenido span{
+     color: rgba(255, 255, 255, 0.89);
+     display: inline-block;
+     margin-top: 0;
+     margin-bottom: 1rem;
+ }
+ 
+ .texnoNormal{
+     font-size: 1.4rem;
+     line-height: 1.8rem;
+ }
+ 
+ .texnoNormal p{
+     color: rgba(255, 255, 255, 0.66);
+     text-align: center;
+     margin-top: 0;
+     margin-bottom: 1rem;
+ }
+ 
+ 
+ /*---------------------------------------
+             informacion
+  -----------------------------------------*/
+  #informacion {
+     background: #ffffffec;
+     background-size: cover;
+     padding: 60px 0 40px 0;
+     margin: center;
+     animation: animacionHome 1s;
+ }
+ 
+ .textoTituloInformacion{
+     font-weight: 900;
+     text-align: center;
+     line-height: 1.8rem;
+     margin-bottom: 2.2rem;
+     visibility: visible;
+     opacity: 1;
+     transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+     transition: opacity 0.8s cubic-bezier(0.5, 0, 0, 1) 0s, transform 0.8s cubic-bezier(0.5, 0, 0, 1) 0s;
+     font-size: calc(2.0em + 3vw);
+     line-height: 3.9rem;
+ }
+ 
+ .textoTituloInformacion span{
+     color: rgba(0, 0, 0, 0.89);
+     display: inline-block;
+     margin-top: 0;
+     margin-bottom: 1rem;
+ }
+ 
+ .texnoNormal2{
+     font-size: 1.4rem;
+     line-height: 1.8rem;
+     font-weight: 400;
+ }
+ 
+ .texnoNormal2 p{
+     color: rgba(0, 0, 0, 0.66);
+     text-align: justify;
+     margin-left: 20px;
+     margin-right: 20px;
+     margin-top: 0;
+     margin-bottom: 1rem;
+ }
+
+ .imagenModificar{
+     width: 400px;
+     border-radius: 20px;
+ }
+ 
+ /*------contenedor botones-------*/
+ 
+ .contenedor-botones{
+     width: 100%;
+ }
+ 
+ .btnIndividual{
+     margin: 0 4px;
+ }
+ /*---------------------------------------
+             informacion2
+  -----------------------------------------*/
+  #informacion2 {
+     background: #212529fa;
+     background-size: cover;
+     padding: 60px 0 40px 0;
+     margin: center;
+     animation: animacionHome 1s;
+ }
+ 
+ .textoTituloInformacion2{
+     font-weight: 900;
+     text-align: center;
+     line-height: 1.8rem;
+     margin-bottom: 2.2rem;
+     visibility: visible;
+     opacity: 1;
+     transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+     transition: opacity 0.8s cubic-bezier(0.5, 0, 0, 1) 0s, transform 0.8s cubic-bezier(0.5, 0, 0, 1) 0s;
+     font-size: calc(1.9em + 2.8vw);
+     line-height: 3.9rem;
+ }
+ 
+ .textoTituloInformacion2 span{
+     color: rgba(255, 255, 255, 0.89);
+     display: inline-block;
+     margin-top: 0;
+     margin-bottom: 1rem;
+ }
+ 
+ .texnoNormal3{
+     font-size: 1.4rem;
+     line-height: 1.8rem;
+ }
+ 
+ .texnoNormal3 p{
+     color: rgba(255, 255, 255, 0.66);
+     text-align: center;
+     margin-top: 0;
+     margin-bottom: 1rem;
+ }
+
+ .imagenLogoS{
+     width: 150px;
+     height: 150px;
+ }
+ 
+ 
+ @keyframes animacionHome{
+     0%{opacity: 0;filter:blur(14)}   
+     100%{opacity: 1;filter:blur(0)}
+ }

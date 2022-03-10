@@ -1,0 +1,129 @@
+h3{
+  margin-bottom:10px;
+  font-weight:800;
+  font-size:30px;
+  color: #DE6262;
+  text-align:center;    
+}
+
+.btn-Guardar{
+  background: #01a2ff; 
+  color:#fff; 
+  font-weight:600;
+  margin-right:0.5rem;
+  margin-left: 0.5rem;
+  margin-bottom: 1rem;
+  width:150px;
+  height:40px;
+}
+
+.btn-login{
+  background: #DC3545;
+  color:#fff;
+  font-weight:600;
+  margin-right:0.5rem;
+  margin-left: 0.5rem;
+  margin-bottom: 1rem;
+  width:170px;
+  height:40px;
+}
+
+.text-uppercase{
+  color: #ffff;
+  width: 50vh;
+}
+
+.fondoRegistro{
+  padding: 22.2px;
+  background:rgba(33, 37, 41);
+  max-width: 70vh;
+  margin: 0 auto;
+  flex-direction: column;
+  justify-content: center;
+
+}
+
+.fondoPrincipal{
+  animation: animationRegistro 1s;
+  background-image: url("/assets/Recursos/Data1.jpg");
+  width: 100%;
+  height: 100vh; /*84*/
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+@keyframes animationRegistro{
+  0%{opacity: 0; filter: blur(14);}
+  100%{opacity: 1; filter: blur(0);}
+}
+
+.tituloDiv{
+
+  text-align:center;
+  font-size: 3rem;
+  color:white;
+  font-weight: 800;
+  position: relative;
+  text-shadow: 0.08em 0.08em 0.08em rgb(41, 40, 40);
+
+}
+
+/*--------------------------------------------------
+                 Texto animado
+----------------------------------------------------*/
+
+.prueba4 {
+display:inline-block;
+overflow:hidden;
+white-space:nowrap;
+text-align: center;
+}
+
+.prueba4:first-of-type {
+animation: showup4 7s infinite;
+}
+
+.prueba4:last-of-type {
+width:50px;
+animation: reveal4 7s infinite;
+}
+
+.prueba4:last-of-type span {
+margin-left:-343px;
+animation: slidein4 7s infinite;
+}
+
+@keyframes showup4 {
+  0% {opacity:0;}
+  20% {opacity:1;}
+  80% {opacity:1;}
+  100% {opacity:0;}
+}
+
+@keyframes slidein4 {
+  0% { margin-left:-800px; }
+  20% { margin-left:-800px; }
+  35% { margin-left:0px; }
+  100% { margin-left:0px; }
+}
+
+@keyframes reveal4 {
+  0% {opacity:0;width:0px;}
+  20% {opacity:1;width:0px;}
+  30% {width:343px;}
+  80% {opacity:1;}
+  100% {opacity:0;width:343px;}
+}
+
+.template{
+  margin-top: 30px;
+  text-align: center;   
+  color: #fff;
+}
+
+.password-icon {
+  float: right;
+  position: relative;
+  margin: -38px 36px 0 0;
+  cursor: pointer;
+}

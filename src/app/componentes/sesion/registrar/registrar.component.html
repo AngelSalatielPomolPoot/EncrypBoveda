@@ -1,0 +1,141 @@
+<div class="fondoPrincipal">
+
+	<div class="tituloDiv">
+        <div class="prueba4 textTitulo1"><b>Encryp</b><span class="text-danger">Bóveda</span> </div> 
+    </div>
+	<div class=" fondoRegistro">
+
+		<form (ngSubmit)="submit()" #forma="ngForm">
+			<h3>Registrar Cuenta</h3>
+			<hr />
+			<label for="name" class="text-uppercase"><b>Nombre:</b></label>
+			<input
+				type="text"
+				#name="ngModel"
+				[(ngModel)]="register.name"
+				placeholder="Introduzca su nombre completo"
+				name="name"
+				minlength="5"
+				class="form-control"
+				required
+				[ngClass]="{'is-valid': !name.invalid, 'is-invalid': name.invalid}"
+			/>
+
+			<div class="invalid-feedback" *ngIf="name.invalid && (name.dirty || name.touched)">
+				<div *ngIf="name.errors.minlength">
+					!Introduzca un nombre de pila con 5 caracteres mínimo¡
+				</div>
+				<div *ngIf="name.errors.required">
+					!Introduzca un nombre de pila válido por favor¡
+				</div>
+			</div>
+			
+			<br>
+
+			<label for="email" class="text-uppercase"><b>Correo electrónico:</b></label>
+			<input
+				
+				type="email"
+				#email="ngModel"
+				[(ngModel)]="register.email"
+				placeholder="Introduzca su correo electrónico"
+				name="email"
+				class="form-control"
+				required
+				[ngClass]="{'is-valid': !email.invalid, 'is-invalid': email.invalid}"
+				pattern="^[a-zA-Z0-9._-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$"
+			/>
+
+			<div class="invalid-feedback" *ngIf="email.invalid && (email.dirty || email.touched)">
+				<div *ngIf="email.errors.required">
+					Introduzca un correo electrónico válido por favor {{ email.value }}
+				</div>
+				<div *ngIf="email.errors && email.errors.pattern">
+					!El correo electrónico no sigue el formato correcto. Sigue este ejemplo: anartz@mugika.com¡
+					{{ email.value }}
+				</div>
+			</div>
+
+			<br>
+
+			<label for="psw" class="text-uppercase"><b>Crear contraseña:</b></label>
+			<input
+				[type]="show ? 'text' : 'password'"
+				placeholder="Introduzca la contraseña"
+				#password="ngModel"
+				[(ngModel)]="register.password"
+				name="password"
+				class="form-control"
+				required
+				[ngClass]="{'is-valid': !password.invalid, 'is-invalid': password.invalid}"
+			/>
+			<span type="button" class="password-icon btn btn-primary" (click)="passwordMostrar()">{{mostrar}}</span>
+			<div class="invalid-feedback" *ngIf="password.invalid && (password.dirty || password.touched)">
+				<div *ngIf="password.errors.required">
+					¡Introduzca una contraseña por favor!
+				</div>
+			</div>
+
+			<br>
+
+			<label for="psw" class="text-uppercase"><b>Confirmar Contraseña:</b></label>
+			<input
+				[type]="show2 ? 'text' : 'password'"
+				placeholder="Repetir la contraseña"
+				#repeatPass="ngModel"
+				[(ngModel)]="register.repeatPass"
+				name="repeatPass"
+				class="form-control"
+				required
+				[ngClass]="{'is-valid': !repeatPass.invalid, 'is-invalid': repeatPass.invalid}"
+			/>
+			<span type="button" class="password-icon btn btn-primary" (click)="passwordMostrar2()">{{mostrar2}}</span>
+			<div class="invalid-feedback" *ngIf="repeatPass.invalid && (repeatPass.dirty || repeatPass.touched)">
+				<div *ngIf="repeatPass.errors.required">
+					¡Introduzca una contraseña por favor!
+				</div>
+			</div>
+			<br>
+			<ng-container *ngIf="espera">
+
+				<div  class="template">
+					<h1 class="textoEspera"> Espere...</h1>
+					<div class="d-flex justify-content-center">
+						<div class="spinner-grow text-primary" role="status">
+							<span class="visually-hidden">Loading...</span>
+						</div>
+						<div class="spinner-grow text-secondary" role="status">
+							<span class="visually-hidden">Loading...</span>
+						</div>
+						<div class="spinner-grow text-success" role="status">
+							<span class="visually-hidden">Loading...</span>
+						</div>
+						<div class="spinner-grow text-danger" role="status">
+							<span class="visually-hidden">Loading...</span>
+						</div>
+						<div class="spinner-grow text-warning" role="status">
+							<span class="visually-hidden">Loading...</span>
+						</div>
+						<div class="spinner-grow text-info" role="status">
+							<span class="visually-hidden">Loading...</span>
+						</div>
+						<div class="spinner-grow text-light" role="status">
+							<span class="visually-hidden">Loading...</span>
+						</div>
+						<div class="spinner-grow text-dark" role="status">
+							<span class="visually-hidden">Loading...</span>
+						</div>
+					</div>
+				</div>
+			</ng-container>
+			<br>
+			<div class="row d-flex justify-content-center">
+				<button type="submit" class="btn btn-login" (click)="inicioSesion()">Ir a inicio de sesión</button>
+				<button type="submit" [disabled]="!forma.valid" (click)="authenticate()" class="btn btn-Guardar" >Guardar Registro</button>
+			</div>
+			
+		</form>
+		
+	</div>
+	<br>
+</div>

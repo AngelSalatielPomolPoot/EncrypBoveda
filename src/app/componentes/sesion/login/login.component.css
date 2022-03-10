@@ -1,0 +1,169 @@
+.rowCustom{
+    margin-left: 0; 
+    margin-right: 0;
+    animation: animationLogin 1s;
+ }
+ 
+ .login-block{
+     background: #d9534f;  /* fallback for old browsers */
+     background: -webkit-linear-gradient(to bottom, #d9534f, #d9534f);  /* Chrome 10-25, Safari 5.1-6 */
+     background: linear-gradient(to bottom, #FFB88C, #d9534f); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+     float:left;
+     width:100%;
+     padding : 50px 0;
+ }
+ .banner-sec{
+     background:url()  no-repeat left bottom; 
+     background-size:cover; 
+     min-height: auto;  
+     padding:0;
+ }
+ 
+ .autentificacionPrincipal{
+     width: 100%;
+     background:rgba(33, 37, 41)
+ 
+ }
+ 
+ .text-uppercase{
+     color: #fff;
+ }
+ 
+ 
+ .carousel-caption{
+     text-align:left; 
+     left:5%;
+ }
+ 
+ .login-sec{
+     padding: 50px 30px; 
+     position:relative;
+     margin: auto;
+     animation: animationLogin 1s;
+ }
+ 
+ @keyframes animationLogin {
+     0%{opacity: 0; filter:blur(14)}
+     100%{opacity: 1;filter:blur(0)}
+ }
+ 
+ .login-sec .copy-text{
+     position:absolute; 
+     width:80%; 
+     bottom:20px; 
+     font-size:13px; 
+     text-align:center;
+ }
+ 
+ .login-sec .copy-text i{
+     color:#dc3545;
+ }
+ 
+ .login-sec .copy-text a{
+     color:#dc3545;
+ }
+ 
+ .login-sec h2{
+     margin-bottom:30px; 
+     font-weight:800; 
+     font-size:30px; 
+     color: #d9534f;
+ }
+ 
+ .login-sec h2:after{
+     content:" "; 
+     width:100px;
+     height:5px;
+     background:#dc3545; 
+     display:block; 
+     margin-top:20px; 
+ 
+     margin-left:auto;
+     margin-right:auto
+ }
+ 
+ .btn-login{
+     background: #d9534f; 
+     color:#fff; 
+     font-weight:600;
+     margin-bottom: 1rem;
+ }
+ 
+.btn-registry{
+    background: #0a6eda; 
+    color:#fff; 
+    font-weight:600;
+    margin-right:1rem ;
+    margin-bottom: 1rem;
+}
+ 
+.banner-text{
+     width:70%; 
+     position:absolute; 
+     bottom:150px; 
+     padding-left:20px;
+  
+ }
+ 
+ .banner-text h2{
+     color:#fff; 
+     font-weight:600;
+     font-size: calc(2em + 4vw);
+     text-shadow: 0.08em 0.08em 0.08em rgb(41, 40, 40)
+ }
+ 
+ .banner-text h2:after{
+     content:" "; 
+     width:100px; 
+     height:5px; 
+     background:#FFF; 
+     display:block; 
+     margin-top:20px; 
+     box-shadow: 0.04em 0.04em 0.04em rgb(41, 40, 40)
+ }
+ 
+ .banner-text p{
+     color:#fff;
+     font-size: calc(0.8em + 1.5vw);
+     text-shadow: 0.08em 0.08em 0.08em rgb(41, 40, 40)
+ 
+ }
+ 
+ 
+ .imagenCarrocel{
+     width: 100%;
+     height: 100vh; /*84*/
+     object-fit: cover;
+     opacity: 0.90;
+ }
+ 
+ 
+ .botones{
+     margin-top: 10px;
+     width: 100%;
+ }
+ 
+ .horientacion-botones{
+     margin: 0 auto;
+     width: max-content;
+ }
+ 
+ .textContrasenia{
+     color: #FFF;
+     margin-bottom: 10px;
+     width: 100%;
+ }
+
+
+.template{
+    margin-top: 30px;
+    text-align: center;   
+    color: #fff;
+}
+
+.password-icon {
+  float: right;
+  position: relative;
+  margin: -38px 0px 0 0;
+  cursor: pointer;
+}

@@ -1,0 +1,311 @@
+<div id="contenido">
+    <div class="container">
+        <div class="textoTituloContenido">
+            <span>
+                Lista De
+            </span>
+            <br>
+            <span>
+                Contraseñas
+            </span>
+        </div>
+        <div class="texnoNormal">
+            <div class="contenedorInicial">
+                <!-- Button trigger modal para añadir nuevo-->
+                <button type="button" (click)="limpiarCampos()" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Agregar Nuevo
+                </button>
+                <div class="cantidadMostrar" *ngIf="listaCuentas">Datos Para Mostrar: {{listaCuentas.cuentas.length}} </div>
+            </div>
+            
+            
+            <!-- Modal para añadir datos -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Agregar Nuevos Datos</h5>
+                    
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <ng-container *ngIf="!espera">
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">Nombre sitio web</label>
+                                <select  class="form-select" aria-label="Default select example" [(ngModel)]="seleccionado" (change)="setOpcion()">    
+                                    <option *ngFor="let opcion of listaOpciones;let indice=index" value="{{indice}}" > {{opcion.sitioWeb}}</option>    
+                                </select>
+                                <ng-container *ngIf="seleccionado==(this.listaOpciones.length-1)">
+                                    <input type="text" class="form-control" [(ngModel)]="valorSitioWeb" id="exampleFormControlInput5" placeholder="Escribe el nuevo sitio Web">
+                                </ng-container>
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput2" class="form-label">Dirección del sitio web</label>
+                                <input  
+                                    type="text" class="form-control" value="{{valorUrl}}" [(ngModel)]="valorUrl" id="exampleFormControlInput2" placeholder="www.sitioweb.com">
+                              </div>
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput3" class="form-label">Usuario</label>
+                                <input type="text" class="form-control" [(ngModel)]="valorUsuario" id="exampleFormControlInput3" placeholder="Usuario">
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput4" class="form-label">Contraseña</label>
+                                <input [type]="show ? 'text' : 'password'" class="form-control" (keyup.enter)="guardarDatos()"  [(ngModel)]="valorContrasenia" id="exampleFormControlInput4" placeholder="Contraseña">
+                                <span type="button" class="password-icon btn btn-primary" (click)="passwordMostrar()">{{mostrar}}</span>
+                            </div>
+                        </ng-container>
+                        
+
+                        <ng-container *ngIf="espera">
+
+                            <div  class="template">
+                                <h1 class="textoEspera"> Espere...</h1>
+                                <div class="d-flex justify-content-center">
+                                    <div class="spinner-grow text-primary" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                    <div class="spinner-grow text-secondary" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                    <div class="spinner-grow text-success" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                    <div class="spinner-grow text-danger" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                    <div class="spinner-grow text-warning" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                    <div class="spinner-grow text-info" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                    <div class="spinner-grow text-light" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                    <div class="spinner-grow text-dark" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-container>
+                    
+
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-success" (click)="guardarDatos()">Guardar</button>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            <!-- Modal para visualizar-->
+            <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+                <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel2">Visualizando Datos</h5>
+                    
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" >
+                        <ng-container *ngIf="cuentaUsuario!==undefined && cuentaUsuario!==null && !espera">
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label subtituloModal">Nombre sitio web:</label>
+                                <p class="colorModalP">{{cuentaUsuario.cuentas[0].sitioWeb}}</p>
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput2" class="form-label subtituloModal">Dirección del sitio web:</label>
+                                <a class="linkBoton" type="button" (click)="goToLink(cuentaUsuario.cuentas[0].urlSitioWeb)" target="_blank">
+                                    <p class="colorModalP">{{cuentaUsuario.cuentas[0].urlSitioWeb}}</p>
+                                </a>
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput3" class="form-label subtituloModal">Usuario:</label>
+                                <p class="colorModalP">{{cuentaUsuario.cuentas[0].usuario}}</p>
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput4" class="form-label subtituloModal">Contraseña:</label>
+                                <p class="colorModalP">{{cuentaUsuario.cuentas[0].contrasenia}}</p>
+                            </div>
+                        </ng-container>
+
+                        <ng-container *ngIf="espera">
+
+                            <div  class="template">
+                                <h1 class="textoEspera"> Espere...</h1>
+                                <div class="d-flex justify-content-center">
+                                    <div class="spinner-grow text-primary" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                    <div class="spinner-grow text-secondary" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                    <div class="spinner-grow text-success" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                    <div class="spinner-grow text-danger" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                    <div class="spinner-grow text-warning" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                    <div class="spinner-grow text-info" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                    <div class="spinner-grow text-light" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                    <div class="spinner-grow text-dark" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-container>
+                        
+
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal" >Cerrar</button>
+                    <button type="button" class="btn btn-primary" (click)="setParametroModificar()" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#exampleModal3">Modificar</button>
+                    <button type="button" class="btn btn-success" (click)="getParametrosEliminar(cuentaUsuario.cuentas[0].id,cuentaUsuario.cuentas[0].idUsuario)">Eliminar</button>
+                    </div>
+                </div>
+                </div>
+            </div>   
+
+            <!-- Modal 3 para modificar los datos -->
+            <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel3" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel3">Modificar Datos</h5>
+                        
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <ng-container *ngIf="cuentaUsuario!==undefined && cuentaUsuario!==null && !espera">
+                                <div class="mb-3">
+                                    <label for="exampleFormControlInput6" class="form-label">Nombre sitio web</label>
+                                    <select  class="form-select" aria-label="Default select example" [(ngModel)]="seleccionado" (change)="setOpcion()">    
+                                        <option *ngFor="let opcion of listaOpciones;let indice=index" value="{{indice}}" > {{opcion.sitioWeb}}</option>    
+                                    </select>
+                                    <ng-container *ngIf="seleccionado==(this.listaOpciones.length-1)">
+                                        <input type="text" class="form-control" [(ngModel)]="valorSitioWeb" id="exampleFormControlInput6" placeholder="Escribe el nuevo sitio Web">
+                                    </ng-container>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleFormControlInput7" class="form-label">Dirección del sitio web</label>
+                                    <input  
+                                        type="text" class="form-control" value="{{valorUrl}}" [(ngModel)]="valorUrl" id="exampleFormControlInput7" placeholder="www.sitioweb.com">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleFormControlInput8" class="form-label">Usuario</label>
+                                    <input type="text" class="form-control" [(ngModel)]="valorUsuario" id="exampleFormControlInput8" placeholder="Usuario">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleFormControlInput9" class="form-label">Contraseña</label>
+                                    <input type="password" class="form-control"  [(ngModel)]="valorContrasenia" id="exampleFormControlInput9" placeholder="Contraseña">
+                                </div>
+                            </ng-container>
+
+                            <ng-container *ngIf="espera">
+
+                                <div  class="template">
+                                    <h1 class="textoEspera"> Espere...</h1>
+                                    <div class="d-flex justify-content-center">
+                                        <div class="spinner-grow text-primary" role="status">
+                                            <span class="visually-hidden">Loading...</span>
+                                        </div>
+                                        <div class="spinner-grow text-secondary" role="status">
+                                            <span class="visually-hidden">Loading...</span>
+                                        </div>
+                                        <div class="spinner-grow text-success" role="status">
+                                            <span class="visually-hidden">Loading...</span>
+                                        </div>
+                                        <div class="spinner-grow text-danger" role="status">
+                                            <span class="visually-hidden">Loading...</span>
+                                        </div>
+                                        <div class="spinner-grow text-warning" role="status">
+                                            <span class="visually-hidden">Loading...</span>
+                                        </div>
+                                        <div class="spinner-grow text-info" role="status">
+                                            <span class="visually-hidden">Loading...</span>
+                                        </div>
+                                        <div class="spinner-grow text-light" role="status">
+                                            <span class="visually-hidden">Loading...</span>
+                                        </div>
+                                        <div class="spinner-grow text-dark" role="status">
+                                            <span class="visually-hidden">Loading...</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-container>
+                        
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#exampleModal2">Cancelar</button>
+                        <button type="button" class="btn btn-success" (click)="guardarDatosModificados()">Guardar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+        <div *ngIf="listaCuentas; else listaNoEncontrada" class="columna">
+            <div class="list-group list-group-modificar">  
+                <a type="button" data-bs-toggle="modal" data-bs-target="#exampleModal2" (click)="getParametrosCuenta(usuario.id,usuario.idUsuario)" *ngFor="let usuario of listaCuentas.cuentas;let indice=index" class="list-group-item list-group-item-dark list-group-item-action">                               <h4>{{usuario.sitioWeb}}</h4>
+                    <p>{{usuario.usuario}}</p>
+                </a>   
+            </div>
+        </div>   
+
+        <ng-template #listaNoEncontrada class="columna">
+            <div *ngIf="mostrarAviso;else mensajeEspera"  class="card card-aviso">
+                <div class="card-header">
+                    Aviso
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">No Hay Cuentas Agregadas</h5>
+                    <p class="card-text">Por favor, agregue sus primeros datos para poder utilizar el sistema</p>
+
+                    <a type="button" (click)="limpiarCampos()" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Agregar Nuevo
+                    </a>
+                </div>
+            </div>
+            <ng-template #mensajeEspera>
+                <div  class="template">
+                    <h1 class="textoEspera"> Espere...</h1>
+                    <div class="d-flex justify-content-center">
+                        <div class="spinner-grow text-primary" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <div class="spinner-grow text-secondary" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <div class="spinner-grow text-success" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <div class="spinner-grow text-danger" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <div class="spinner-grow text-warning" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <div class="spinner-grow text-info" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <div class="spinner-grow text-light" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <div class="spinner-grow text-dark" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+        </ng-template>  
+    </div>
+</div>

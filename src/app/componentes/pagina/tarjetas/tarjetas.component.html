@@ -1,0 +1,352 @@
+<div id="contenido">
+    <div class="container">
+        <div class="textoTituloContenido">
+            <span>
+                Lista De Tarjetas
+            </span>
+           
+        </div>
+        <div class="texnoNormal">
+            <div class="contenedorInicial">
+                <!-- Button trigger modal para añadir nuevo-->
+                <button type="button" (click)="limpiarCampos()" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Agregar Nuevo
+                </button>
+                <div class="cantidadMostrar" *ngIf="listaTarjetas">Datos Para Mostrar: {{listaTarjetas.tarjetas.length}} </div>
+            </div>
+            
+            
+            <!-- Modal para añadir datos -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Agregar Nuevos Datos</h5>
+                    
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <ng-container *ngIf="!espera">
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">Nombre del titular:</label>
+                                <input type="text" class="form-control" [(ngModel)]="valorNombreTitular" id="exampleFormControlInput1" placeholder="Usuario">
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput2" class="form-label">Nombre de la tarjeta:</label>
+                                <select  class="form-select" aria-label="Default select example" [(ngModel)]="seleccionado" (change)="setOpcion()">    
+                                    <option *ngFor="let opcion of listaOpciones;let indice=index" value="{{indice}}" > {{opcion.tarjeta}}</option>    
+                                </select>
+                                <ng-container *ngIf="seleccionado==(this.listaOpciones.length-1)">
+                                    <input type="text" class="form-control" style="text-transform:uppercase" [(ngModel)]="valorNombreTarjeta" id="exampleFormControlInput2" placeholder="Escribe el nombre de la tarjeta">
+                                </ng-container>
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput3" class="form-label">Número de la tarjeta:</label>
+                                <input  
+                                    type="text" class="form-control" [(ngModel)]="valorNumeroTarjeta" id="exampleFormControlInput3" placeholder="XXXX-XXXX-XXXX-XXXX">
+                              </div>
+    
+                            <div>
+                                <label for="exampleFormControlInput4" for="start">Fecha de expiración:</label>
+                                <br>
+                                <input type="text" id="exampleFormControlInput4" class="form-control" [(ngModel)]="valorFechaExpiracion" name="trip-start" placeholder="21/12">
+                            </div>
+                            <br>
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput5" class="form-label">CVV</label>
+                                <input type="password" class="form-control"  [(ngModel)]="valorCVV" id="exampleFormControlInput5" placeholder="XXX">
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput6" class="form-label">NIP</label>
+                                <input type="password" class="form-control"  [(ngModel)]="valorNIP" id="exampleFormControlInput6" placeholder="XXXX">
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput7" class="form-label">Notas:</label>
+                                <input type="text" class="form-control" [(ngModel)]="valorNota" id="exampleFormControlInput7">
+                              </div>
+    
+                        </ng-container>
+                        
+
+                        <ng-container *ngIf="espera">
+
+                            <div  class="template">
+                                <h1 class="textoEspera"> Espere...</h1>
+                                <div class="d-flex justify-content-center">
+                                    <div class="spinner-grow text-primary" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                    <div class="spinner-grow text-secondary" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                    <div class="spinner-grow text-success" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                    <div class="spinner-grow text-danger" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                    <div class="spinner-grow text-warning" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                    <div class="spinner-grow text-info" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                    <div class="spinner-grow text-light" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                    <div class="spinner-grow text-dark" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-container>
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-success" (click)="guardarDatos()">Guardar</button>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            <!-- Modal para visualizar-->
+            <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+                <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel2">Visualizando Datos</h5>
+                    
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" >
+                        <ng-container *ngIf="tarjeta!==undefined && tarjeta!==null && !espera">
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput11" class="form-label subtituloModal">Nombre del titular:</label>
+                                <p class="colorModalP">{{tarjeta.tarjetas[0].nombreTitular}}</p>
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput12" class="form-label subtituloModal">Nombre de la tarjeta:</label>
+                                <p class="colorModalP">{{tarjeta.tarjetas[0].nombreTarjeta}}</p>
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput13" class="form-label subtituloModal">Número de tarjeta:</label>
+                                <p class="colorModalP">{{tarjeta.tarjetas[0].numeroTarjeta}}</p>
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput14" class="form-label subtituloModal">Fecha de expiración:</label>
+                                <p class="colorModalP">{{tarjeta.tarjetas[0].expiracion}}</p>
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput15" class="form-label subtituloModal">CVV:</label>
+                                <p class="colorModalP">{{tarjeta.tarjetas[0].cvv}}</p>
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput16" class="form-label subtituloModal">NIP:</label>
+                                <p class="colorModalP">{{tarjeta.tarjetas[0].pin}}</p>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput17" class="form-label subtituloModal">Nota:</label>
+                                <p class="colorModalP">{{tarjeta.tarjetas[0].nota}}</p>
+                            </div>
+
+
+
+                        </ng-container>
+
+                        <ng-container *ngIf="espera">
+
+                            <div  class="template">
+                                <h1 class="textoEspera"> Espere...</h1>
+                                <div class="d-flex justify-content-center">
+                                    <div class="spinner-grow text-primary" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                    <div class="spinner-grow text-secondary" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                    <div class="spinner-grow text-success" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                    <div class="spinner-grow text-danger" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                    <div class="spinner-grow text-warning" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                    <div class="spinner-grow text-info" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                    <div class="spinner-grow text-light" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                    <div class="spinner-grow text-dark" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-container>
+                        
+
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal" >Cerrar</button>
+                    <button type="button" class="btn btn-primary" (click)="setParametroModificar()" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#exampleModal3">Modificar</button>
+                    <button type="button" class="btn btn-success" (click)="getParametrosEliminar(tarjeta.tarjetas[0].id,tarjeta.tarjetas[0].idUsuario)">Eliminar</button>
+                    </div>
+                </div>
+                </div>
+            </div>   
+
+            <!-- Modal 3 para modificar los datos -->
+            <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel3" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel3">Modificar Datos</h5>
+                        
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <ng-container *ngIf="tarjeta!==undefined && tarjeta!==null && !espera">
+                                <div class="mb-3">
+                                    <label for="exampleFormControlInput21" class="form-label">Nombre del titular:</label>
+                                    <input type="text" class="form-control" [(ngModel)]="valorNombreTitular" id="exampleFormControlInput21" placeholder="Usuario">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleFormControlInput22" class="form-label">Nombre de la tarjeta:</label>
+                                    <select  class="form-select" aria-label="Default select example" [(ngModel)]="seleccionado" (change)="setOpcion()">    
+                                        <option *ngFor="let opcion of listaOpciones;let indice=index" value="{{indice}}" > {{opcion.tarjeta}}</option>    
+                                    </select>
+                                    <ng-container *ngIf="seleccionado==(this.listaOpciones.length-1)">
+                                        <input type="text" class="form-control" [(ngModel)]="valorNombreTarjeta" id="exampleFormControlInput22" placeholder="Escribe el nombre de la tarjeta">
+                                    </ng-container>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleFormControlInput23" class="form-label">Número de la tarjeta:</label>
+                                    <input  
+                                        type="text" class="form-control" [(ngModel)]="valorNumeroTarjeta" id="exampleFormControlInput23" placeholder="XXXX-XXXX-XXXX-XXXX">
+                                  </div>
+        
+                                <div>
+                                    <label for="exampleFormControlInput24" for="start">Fecha de expiración:</label>
+                                    <br>
+                                    <input type="text" id="exampleFormControlInput24" class="form-control" [(ngModel)]="valorFechaExpiracion" name="trip-start" min="21/01" max="50/12" placeholder="21/01">
+                                </div>
+                                <br>
+                                <div class="mb-3">
+                                    <label for="exampleFormControlInput25" class="form-label">CVV</label>
+                                    <input type="password" class="form-control"  [(ngModel)]="valorCVV" id="exampleFormControlInput25" placeholder="XXX">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleFormControlInput26" class="form-label">NIP</label>
+                                    <input type="password" class="form-control"  [(ngModel)]="valorNIP" id="exampleFormControlInput26" placeholder="XXXX">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleFormControlInput27" class="form-label">Notas:</label>
+                                    <input type="text" class="form-control" [(ngModel)]="valorNota" id="exampleFormControlInput27">
+                                  </div>
+                            </ng-container>
+
+                            <ng-container *ngIf="espera">
+
+                                <div  class="template">
+                                    <h1 class="textoEspera"> Espere...</h1>
+                                    <div class="d-flex justify-content-center">
+                                        <div class="spinner-grow text-primary" role="status">
+                                            <span class="visually-hidden">Loading...</span>
+                                        </div>
+                                        <div class="spinner-grow text-secondary" role="status">
+                                            <span class="visually-hidden">Loading...</span>
+                                        </div>
+                                        <div class="spinner-grow text-success" role="status">
+                                            <span class="visually-hidden">Loading...</span>
+                                        </div>
+                                        <div class="spinner-grow text-danger" role="status">
+                                            <span class="visually-hidden">Loading...</span>
+                                        </div>
+                                        <div class="spinner-grow text-warning" role="status">
+                                            <span class="visually-hidden">Loading...</span>
+                                        </div>
+                                        <div class="spinner-grow text-info" role="status">
+                                            <span class="visually-hidden">Loading...</span>
+                                        </div>
+                                        <div class="spinner-grow text-light" role="status">
+                                            <span class="visually-hidden">Loading...</span>
+                                        </div>
+                                        <div class="spinner-grow text-dark" role="status">
+                                            <span class="visually-hidden">Loading...</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-container>
+                        
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#exampleModal2">Cancelar</button>
+                        <button type="button" class="btn btn-success" (click)="guardarDatosModificados()">Guardar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+        <div *ngIf="listaTarjetas; else listaNoEncontrada" class="columna">
+            <div class="list-group list-group-modificar">  
+                <a type="button" data-bs-toggle="modal" data-bs-target="#exampleModal2" (click)="getParametrosTarjeta(tarjeta.id,tarjeta.idUsuario)" *ngFor="let tarjeta of listaTarjetas.tarjetas;let indice=index" class="list-group-item list-group-item-dark list-group-item-action">         
+                    <h4>{{tarjeta.nombreTarjeta}}</h4>
+                    <p>{{tarjeta.nombreTitular}}</p>
+                    <p>{{tarjeta.numeroTarjeta|slice:0:4}}-XXXX-XXXX-XXXX</p>
+                </a>   
+            </div>
+        </div>   
+
+        <ng-template #listaNoEncontrada class="columna">
+            <div *ngIf="mostrarAviso;else mensajeEspera"  class="card card-aviso">
+                <div class="card-header">
+                    Aviso
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">No Hay Tarjetas Agregadas</h5>
+                    <p class="card-text">Por favor, agregue sus primeros datos para poder utilizar el sistema</p>
+
+                    <a type="button" (click)="limpiarCampos()" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Agregar Nuevo
+                    </a>
+                </div>
+            </div>
+            <ng-template #mensajeEspera>
+                <div  class="template">
+                    <h1 class="textoEspera"> Espere...</h1>
+                    <div class="d-flex justify-content-center">
+                        <div class="spinner-grow text-primary" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <div class="spinner-grow text-secondary" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <div class="spinner-grow text-success" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <div class="spinner-grow text-danger" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <div class="spinner-grow text-warning" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <div class="spinner-grow text-info" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <div class="spinner-grow text-light" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <div class="spinner-grow text-dark" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+        </ng-template>  
+    </div>
+</div>

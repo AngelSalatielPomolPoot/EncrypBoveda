@@ -1,0 +1,10 @@
+/* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files */
+
+
+body{
+    background:linear-gradient(141deg, rgb(61, 61, 61) 25%, rgb(173, 173, 173) 60%, rgb(65, 63, 63) 100%);
+    background-attachment: fixed;
+}
+
+
